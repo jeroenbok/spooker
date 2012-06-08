@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Spooker.Web.Domain
@@ -14,6 +15,21 @@ namespace Spooker.Web.Domain
         public void Join(Participant participant)
         {
             _participants.Add(participant);
+        }
+    }
+
+    public class VotedArgs : EventArgs
+    {
+        private readonly int _estimate;
+
+        public VotedArgs(int estimate)
+        {
+            _estimate = estimate;
+        }
+
+        public int Estimate
+        {
+            get { return _estimate; }
         }
     }
 }

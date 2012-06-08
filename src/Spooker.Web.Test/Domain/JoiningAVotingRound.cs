@@ -35,5 +35,11 @@ namespace Spooker.Web.Test.Domain
         {
             Assert.Inconclusive();
         }
+
+        [Test]
+        public void Can_handle_reading_and_writing_simultaneously_the_votingrounds_participant_list()
+        {
+            Assert.Inconclusive();
+        }
     }
 }
