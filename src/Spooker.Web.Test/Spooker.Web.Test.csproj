@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\ParticipantCastingAVote.cs" />
-    <Compile Include="Domain\JoiningAVotingRound.cs" />
+    <Compile Include="Domain\ParticipantJoinsAVotingRound.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

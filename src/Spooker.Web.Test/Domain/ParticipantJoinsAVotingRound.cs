@@ -4,10 +4,10 @@ using Spooker.Web.Domain;
 namespace Spooker.Web.Test.Domain
 {
     [TestFixture]
-    public class JoiningAVotingRound
+    public class ParticipantJoinsAVotingRound
     {
         [Test]
-        public void When_participant_enters_name_on_joining_then_he_participates_in_the_voting_round()
+        public void Named_participant_can_join_voting_round()
         {
             var participant = new Participant("name");
             var votingRound = new VotingRound();
@@ -31,13 +31,13 @@ namespace Spooker.Web.Test.Domain
         }
         
         [Test]
-        public void Participant_cannot_join_voting_round_when_someone_with_same_name_is_already_participating()
+        public void Cannot_join_voting_round_when_same_name_is_already_participating()
         {
             Assert.Inconclusive();
         }
 
         [Test]
-        public void Can_handle_reading_and_writing_simultaneously_the_votingrounds_participant_list()
+        public void Can_handle_reading_and_writing_simultaneously_votingrounds_participant_list()
         {
             Assert.Inconclusive();
         }
