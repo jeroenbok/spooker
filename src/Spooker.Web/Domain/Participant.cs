@@ -5,10 +5,10 @@ namespace Spooker.Web.Domain
 {
     public class Participant
     {
-        public event EventHandler<VotedArgs> Voted;
+        public event EventHandler<EstimatedArgs> Voted;
         
         private readonly string _name;
-        private VotingRound _round;
+        private EstimationRound _round;
 
         public Participant(string name)
         {
@@ -20,17 +20,17 @@ namespace Spooker.Web.Domain
             get { return _name; }
         }
 
-        public void Participate(VotingRound round)
+        public void Participate(EstimationRound round)
         {
             _round = round;
             _round.Join(this);
         }
 
-        public void Cast(int estimate)
+        public void Estimate(int estimate)
         {
             if (_round == null)
                 throw new NotParticipatingInRoundException(_name);
-            Voted.Raise(this, new VotedArgs(new Vote(_name, estimate)));
+            Voted.Raise(this, new EstimatedArgs(new Estimate(_name, estimate)));
         }
 
         public override string ToString()

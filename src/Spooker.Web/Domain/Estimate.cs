@@ -1,14 +1,14 @@
 namespace Spooker.Web.Domain
 {
-    public class Vote
+    public class Estimate
     {
         private readonly string _participantName;
-        private readonly int _estimate;
+        private readonly int _storyPoints;
 
-        public Vote(string participantName, int estimate)
+        public Estimate(string participantName, int storyPoints)
         {
             _participantName = participantName;
-            _estimate = estimate;
+            _storyPoints = storyPoints;
         }
 
         public string ParticipantName
@@ -16,10 +16,10 @@ namespace Spooker.Web.Domain
             get { return _participantName; }
         }
 
-        public int Estimate
+        public int StoryPoints
         {
             get {
-                return _estimate;
+                return _storyPoints;
             }
         }
     }

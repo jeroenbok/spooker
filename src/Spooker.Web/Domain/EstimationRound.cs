@@ -3,19 +3,19 @@ using System.Collections.Generic;
 
 namespace Spooker.Web.Domain
 {
-    public class VotingRound
+    public class EstimationRound
     {
         private readonly IList<Participant> _participants = new List<Participant>();
-        private Votes _votes = new Votes();
+        private Estimates _estimates = new Estimates();
 
         public IEnumerable<Participant> Partipants
         {
             get { return _participants; }
         }
 
-        public Votes Votes
+        public Estimates Estimates
         {
-            get { return new Votes(); }
+            get { return _estimates; }
         }
 
         public void Join(Participant participant)
@@ -25,24 +25,24 @@ namespace Spooker.Web.Domain
             participant.Voted += RegisterVote;
         }
 
-        private void RegisterVote(object sender, VotedArgs args)
+        private void RegisterVote(object sender, EstimatedArgs args)
         {
-            _votes = _votes.Register(args.Vote);
+            _estimates = _estimates.Register(args.Estimate);
         }
     }
 
-    public class VotedArgs : EventArgs
+    public class EstimatedArgs : EventArgs
     {
-        private readonly Vote _vote;
+        private readonly Estimate _estimate;
 
-        public VotedArgs(Vote vote)
+        public EstimatedArgs(Estimate estimate)
         {
-            _vote = vote;
+            _estimate = estimate;
         }
 
-        public Vote Vote
+        public Estimate Estimate
         {
-            get { return _vote; }
+            get { return _estimate; }
         }
     }
 }

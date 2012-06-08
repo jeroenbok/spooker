@@ -10,7 +10,7 @@ namespace Spooker.Web.Test.Domain
         public void Named_participant_can_join_voting_round()
         {
             var participant = new Participant("name");
-            var votingRound = new VotingRound();
+            var votingRound = new EstimationRound();
             
             participant.Participate(votingRound);
 
@@ -22,7 +22,7 @@ namespace Spooker.Web.Test.Domain
         {
             var joe = new Participant("joe");
             var jane = new Participant("jane");
-            var votingRound = new VotingRound();
+            var votingRound = new EstimationRound();
             
             joe.Participate(votingRound);
             jane.Participate(votingRound);

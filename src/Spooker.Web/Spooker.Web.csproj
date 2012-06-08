@@ -123,9 +123,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Domain\NotParticipatingInRoundException.cs" />
     <Compile Include="Domain\Participant.cs" />
-    <Compile Include="Domain\Vote.cs" />
-    <Compile Include="Domain\Votes.cs" />
-    <Compile Include="Domain\VotingRound.cs" />
+    <Compile Include="Domain\Estimate.cs" />
+    <Compile Include="Domain\Estimates.cs" />
+    <Compile Include="Domain\EstimationRound.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
