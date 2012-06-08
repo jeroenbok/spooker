@@ -41,6 +41,26 @@ namespace Spooker.Web.Test.Domain
             Assert.That(round.Estimates[participant.Name], Is.EqualTo(8));
         }
 
+        [Test]
+        public void Estimates_by_multiple_participants_are_registered_in_estimation_round()
+        {
+            var round = new EstimationRound();
+            var joe = ParticipantIn(round, "joe");
+            var jane = ParticipantIn(round, "jane");
+            
+            joe.Estimate(3);
+            jane.Estimate(5);
+
+            Assert.That(round.Estimates[joe.Name], Is.EqualTo(3));
+            Assert.That(round.Estimates[jane.Name], Is.EqualTo(5));
+        }
+
+        [Test]
+        public void When_participant_revotes_then_previous_vote_is_overwritten()
+        {
+            Assert.Inconclusive();
+        }
+
         private Participant ParticipantIn(EstimationRound round, string name = "anonymous")
         {
             var participant = new Participant(name);
