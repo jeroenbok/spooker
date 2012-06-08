@@ -10,13 +10,14 @@ namespace Spooker.Web.Test.Domain
         public void Can_cast_vote_when_participating_in_votinground()
         {
             var round = new VotingRound();
-            var castVote = 0;
-            var participant = ParticipantInRound(round);
-            participant.Voted += (sender, args) => castVote = args.Estimate;
+            Vote castedVote = null;
+            var participant = ParticipantInRound(round, "name");
+            participant.Voted += (sender, args) => castedVote = args.Vote;
 
-            participant.Vote(5);
+            participant.Cast(5);
             
-            Assert.That(castVote, Is.EqualTo(5), "cast vote");
+            Assert.That(castedVote.ParticipantName, Is.EqualTo("name"), "participant");
+            Assert.That(castedVote.Estimate, Is.EqualTo(5), "estimate");
         }
 
         [Test]
@@ -24,14 +25,25 @@ namespace Spooker.Web.Test.Domain
         {
             var participant = new Participant("name");
 
-            var thrown = Assert.Throws<NotParticipatingInRoundException>(() => participant.Vote(5));
+            var thrown = Assert.Throws<NotParticipatingInRoundException>(() => participant.Cast(5));
 
             Assert.That(thrown.Message, Is.EqualTo("Participant [name] is required to participate in a voting round before casting a vote."), "message");
         }
 
-        private static Participant ParticipantInRound(VotingRound round)
+        [Test]
+        public void Vote_cast_by_participant_is_registered_in_voting_round()
         {
-            var participant = new Participant("name");
+            var round = new VotingRound();
+            var participant = ParticipantInRound(round);
+            
+            participant.Cast(8);
+
+            Assert.That(round.Votes[participant.Name], Is.EqualTo(8));
+        }
+
+        private Participant ParticipantInRound(VotingRound round, string name = "anonymous")
+        {
+            var participant = new Participant(name);
             participant.Participate(round);
             return participant;
         }

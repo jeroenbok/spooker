@@ -6,30 +6,43 @@ namespace Spooker.Web.Domain
     public class VotingRound
     {
         private readonly IList<Participant> _participants = new List<Participant>();
+        private Votes _votes = new Votes();
 
         public IEnumerable<Participant> Partipants
         {
             get { return _participants; }
         }
 
+        public Votes Votes
+        {
+            get { return new Votes(); }
+        }
+
         public void Join(Participant participant)
         {
+            // TODO Handle dupe participant join attempts
             _participants.Add(participant);
+            participant.Voted += RegisterVote;
+        }
+
+        private void RegisterVote(object sender, VotedArgs args)
+        {
+            _votes = _votes.Register(args.Vote);
         }
     }
 
     public class VotedArgs : EventArgs
     {
-        private readonly int _estimate;
+        private readonly Vote _vote;
 
-        public VotedArgs(int estimate)
+        public VotedArgs(Vote vote)
         {
-            _estimate = estimate;
+            _vote = vote;
         }
 
-        public int Estimate
+        public Vote Vote
         {
-            get { return _estimate; }
+            get { return _vote; }
         }
     }
 }
