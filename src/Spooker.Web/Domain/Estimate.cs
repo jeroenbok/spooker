@@ -3,9 +3,9 @@ namespace Spooker.Web.Domain
     public class Estimate
     {
         private readonly string _participantName;
-        private readonly int _storyPoints;
+        private readonly StoryPoints _storyPoints;
 
-        public Estimate(string participantName, int storyPoints)
+        public Estimate(string participantName, StoryPoints storyPoints)
         {
             _participantName = participantName;
             _storyPoints = storyPoints;
@@ -16,11 +16,39 @@ namespace Spooker.Web.Domain
             get { return _participantName; }
         }
 
-        public int StoryPoints
+        public StoryPoints StoryPoints
         {
             get {
                 return _storyPoints;
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != typeof (Estimate)) return false;
+            return Equals((Estimate) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (_participantName.GetHashCode() * 397) ^ _storyPoints.GetHashCode();
+            }
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Estimate[Participant='{0}', StoryPoints='{1}']", _participantName, _storyPoints);
+        }
+
+        private bool Equals(Estimate other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Equals(other._participantName, _participantName) && Equals(other._storyPoints, _storyPoints);
         }
     }
 }

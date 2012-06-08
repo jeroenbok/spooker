@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\ObservingEstimationRoundProgress.cs" />
     <Compile Include="Domain\ParticipantEstimating.cs" />
     <Compile Include="Domain\ParticipantJoinsAnEstimationRound.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

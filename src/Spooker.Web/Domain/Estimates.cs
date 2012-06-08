@@ -1,26 +1,25 @@
-using System;
 using System.Collections.Generic;
 
 namespace Spooker.Web.Domain
 {
     public class Estimates
     {
-        private readonly IDictionary<string, int> _estimatesByParticipant;
+        private readonly IDictionary<string, StoryPoints> _estimatesByParticipant;
 
-        public Estimates() : this (new Dictionary<string, int>())
+        public Estimates() : this(new Dictionary<string, StoryPoints>())
         {
         }
 
-        private Estimates(Dictionary<string, int> estimatesByParticipant)
+        private Estimates(Dictionary<string, StoryPoints> estimatesByParticipant)
         {
             _estimatesByParticipant = estimatesByParticipant;
         }
 
-        public int this[string participantName]
+        public StoryPoints this[string participantName]
         {
             get
             {
-                if (!_estimatesByParticipant.ContainsKey(participantName))
+                if (!HasEstimateFor(participantName))
                     throw new ParticipantHasNotYetEstimatedException(participantName);
                 return _estimatesByParticipant[participantName];
             }
@@ -28,16 +27,14 @@ namespace Spooker.Web.Domain
 
         public Estimates Register(Estimate estimate)
         {
-            var newEstimatesByParticipant = new Dictionary<string, int>(_estimatesByParticipant)
+            var newEstimatesByParticipant = new Dictionary<string, StoryPoints>(_estimatesByParticipant)
                                {{estimate.ParticipantName, estimate.StoryPoints}};
             return new Estimates(newEstimatesByParticipant);
         }
-    }
 
-    public class ParticipantHasNotYetEstimatedException : Exception
-    {
-        public ParticipantHasNotYetEstimatedException(string participantName) : base(string.Format("Participant [{0}] has not estimated yet...", participantName))
+        public bool HasEstimateFor(string participantName)
         {
+            return _estimatesByParticipant.ContainsKey(participantName);
         }
     }
 }

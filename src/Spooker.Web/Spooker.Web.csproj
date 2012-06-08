@@ -121,11 +121,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Domain\EstimationStatus.cs" />
     <Compile Include="Domain\NotParticipatingInRoundException.cs" />
     <Compile Include="Domain\Participant.cs" />
     <Compile Include="Domain\Estimate.cs" />
     <Compile Include="Domain\Estimates.cs" />
     <Compile Include="Domain\EstimationRound.cs" />
+    <Compile Include="Domain\ParticipantHasNotYetEstimatedException.cs" />
+    <Compile Include="Domain\StoryPoints.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

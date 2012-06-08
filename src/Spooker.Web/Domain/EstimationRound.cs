@@ -18,6 +18,22 @@ namespace Spooker.Web.Domain
             get { return _estimates; }
         }
 
+        public EstimationStatus Status
+        {
+            get
+            {
+                var estimations = new List<Estimate>();
+                foreach (var participant in _participants)
+                {
+                    var storyPoints = _estimates.HasEstimateFor(participant.Name)
+                                                  ? _estimates[participant.Name]
+                                                  : StoryPoints.None;
+                    estimations.Add(new Estimate(participant.Name, storyPoints));
+                }
+                return new EstimationStatus(estimations);
+            }
+        }
+
         public void Join(Participant participant)
         {
             // TODO Handle dupe participant join attempts
