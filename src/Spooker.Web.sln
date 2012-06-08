@@ -3,6 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spooker.Web", "Spooker.Web\Spooker.Web.csproj", "{695BEF75-9048-466C-830F-92808C74194F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{79E84003-2642-4630-8768-1B54CAC134FD}"
+	ProjectSection(SolutionItems) = preProject
+		docs\todo.txt = docs\todo.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spooker.Web.Test", "Spooker.Web.Test\Spooker.Web.Test.csproj", "{3492D18A-CC77-400B-AFC2-2103D4D1A73A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +20,10 @@ Global
 		{695BEF75-9048-466C-830F-92808C74194F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{695BEF75-9048-466C-830F-92808C74194F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{695BEF75-9048-466C-830F-92808C74194F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3492D18A-CC77-400B-AFC2-2103D4D1A73A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3492D18A-CC77-400B-AFC2-2103D4D1A73A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3492D18A-CC77-400B-AFC2-2103D4D1A73A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3492D18A-CC77-400B-AFC2-2103D4D1A73A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
