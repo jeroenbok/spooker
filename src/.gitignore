@@ -1,2 +1,16 @@
+# Mac OS generated files
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Visual studio
+bin/
+obj/
+build_artifacts/
+*.user
 *.suo
+*.sln.docstates
+*.psess
+*.vsp
 _ReSharper*

@@ -1,0 +1,44 @@
+-------------------------------------------------------------------------------
+Spooker
+
+	Spooker is an online Planning Poker application.
+
+How does it work
+
+	[Participants] can join a [voting session] and bring out a [vote].
+	When all participants have voted, a [vote summary] is displayed.
+
+	From here on, a new voting round starts.
+
+Terms
+
+	[Participant]
+		A user, identified by [name]
+	[Voting round]
+		A round of voting.
+	[Vote]
+		A vote submitted by a participant in a voting round.
+-------------------------------------------------------------------------------
+
+Scenarios
+
+	Joining a voting round
+
+		As a [participant], I can join a [voting round] by entering my name,
+		so I can participate in the planning.
+	
+	Casting a vote
+
+		As a [participant], I can [cast a vote] by entering my [estimate],
+		so that my vote is taken into account for a [voting round] for a user story.
+
+	Seeing voting round progress
+
+		As a [participant], I can see which of the participants have voted,
+		and whose votes are pending -without seeing their actual estimate,
+		so that I can see which participants have decided on their estimate.
+
+	Seeing voting round outcome
+
+		As a [participant], I can see the votes of all participants,
+		so that as a group we can get consensus of the size of the user story.
