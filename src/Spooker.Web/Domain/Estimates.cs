@@ -5,32 +5,32 @@ namespace Spooker.Web.Domain
 {
     public class Estimates
     {
-        private readonly IDictionary<string, int> _votesByParticipant;
+        private readonly IDictionary<string, int> _estimatesByParticipant;
 
         public Estimates() : this (new Dictionary<string, int>())
         {
         }
 
-        private Estimates(Dictionary<string, int> votesByParticipant)
+        private Estimates(Dictionary<string, int> estimatesByParticipant)
         {
-            _votesByParticipant = votesByParticipant;
+            _estimatesByParticipant = estimatesByParticipant;
         }
 
         public int this[string participantName]
         {
             get
             {
-                if (!_votesByParticipant.ContainsKey(participantName))
+                if (!_estimatesByParticipant.ContainsKey(participantName))
                     throw new ParticipantHasNotYetEstimatedException(participantName);
-                return _votesByParticipant[participantName];
+                return _estimatesByParticipant[participantName];
             }
         }
 
         public Estimates Register(Estimate estimate)
         {
-            var newVotes = new Dictionary<string, int>(_votesByParticipant)
+            var newEstimatesByParticipant = new Dictionary<string, int>(_estimatesByParticipant)
                                {{estimate.ParticipantName, estimate.StoryPoints}};
-            return new Estimates(newVotes);
+            return new Estimates(newEstimatesByParticipant);
         }
     }
 

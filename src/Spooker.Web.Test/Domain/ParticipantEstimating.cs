@@ -4,15 +4,15 @@ using Spooker.Web.Domain;
 namespace Spooker.Web.Test.Domain
 {
     [TestFixture]
-    public class ParticipantCastingAVote
+    public class ParticipantEstimating
     {
         [Test]
-        public void Can_cast_vote_when_participating_in_votinground()
+        public void Can_estimate_when_participating_in_estimation_round()
         {
             var round = new EstimationRound();
             Estimate estimate = null;
             var participant = ParticipantIn(round, "name");
-            participant.Voted += (sender, args) => estimate = args.Estimate;
+            participant.Estimated += (sender, args) => estimate = args.Estimate;
 
             participant.Estimate(5);
             
@@ -21,7 +21,7 @@ namespace Spooker.Web.Test.Domain
         }
 
         [Test]
-        public void Cannot_cast_vote_when_not_participating_in_votinground()
+        public void Cannot_estimate_when_not_participating_in_estimation_round()
         {
             var participant = new Participant("name");
 

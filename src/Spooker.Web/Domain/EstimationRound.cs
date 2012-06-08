@@ -22,10 +22,10 @@ namespace Spooker.Web.Domain
         {
             // TODO Handle dupe participant join attempts
             _participants.Add(participant);
-            participant.Voted += RegisterVote;
+            participant.Estimated += RegisterEstimate;
         }
 
-        private void RegisterVote(object sender, EstimatedArgs args)
+        private void RegisterEstimate(object sender, EstimatedArgs args)
         {
             _estimates = _estimates.Register(args.Estimate);
         }

@@ -5,7 +5,7 @@ namespace Spooker.Web.Domain
 {
     public class Participant
     {
-        public event EventHandler<EstimatedArgs> Voted;
+        public event EventHandler<EstimatedArgs> Estimated;
         
         private readonly string _name;
         private EstimationRound _round;
@@ -30,7 +30,7 @@ namespace Spooker.Web.Domain
         {
             if (_round == null)
                 throw new NotParticipatingInRoundException(_name);
-            Voted.Raise(this, new EstimatedArgs(new Estimate(_name, estimate)));
+            Estimated.Raise(this, new EstimatedArgs(new Estimate(_name, estimate)));
         }
 
         public override string ToString()
