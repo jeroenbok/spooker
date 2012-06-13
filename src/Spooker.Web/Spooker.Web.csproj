@@ -121,6 +121,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EstimationController.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Domain\CannotEstimateWhenAllEstimatesAreGivenException.cs" />
     <Compile Include="Domain\EstimatedArgs.cs" />
     <Compile Include="Domain\EstimationStatus.cs" />
@@ -200,11 +202,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Register\Register.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Estimation\Estimate.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
