@@ -49,14 +49,14 @@ Scenarios
 		    I want to see the number of estimates go up,
 			so that I can see whether I should hurry up.
 
-		[~] As a [participant who has estimated],
+		[x] As a [participant who has estimated],
 		    I can see which of the participants have estimated,
 		       and whose estimates are pending -without seeing their actual estimate,
 		    so that I can see which participants have decided on their estimate.
 
-		[ ] As a [participant who has estimated],
+		[~] As a [participant who has estimated],
 		    when all participants have estimated,
-		    I want to be able to join the next voting round.
+		    I want to be able to join the next voting round. <-
 
 	Seeing estimation round outcome
 

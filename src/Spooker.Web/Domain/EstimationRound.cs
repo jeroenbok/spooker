@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Spooker.Web.Infrastructure.Extensions;
@@ -6,6 +7,8 @@ namespace Spooker.Web.Domain
 {
     public class EstimationRound
     {
+        public event EventHandler<RoundCompletedArgs> Completed = delegate { };
+
         private readonly IList<Participant> _participants = new List<Participant>();
         private Estimates _estimates = new Estimates();
 
@@ -48,6 +51,9 @@ namespace Spooker.Web.Domain
                 throw new CannotEstimateWhenAllEstimatesAreGivenException();
 
             _estimates = _estimates.Register(args.Estimate);
+            
+            if (AllParticipantsHaveEstimated)
+                Completed(this, new RoundCompletedArgs(Status));
         }
 
         private bool AllParticipantsHaveEstimated

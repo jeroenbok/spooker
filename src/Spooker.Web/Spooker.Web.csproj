@@ -130,6 +130,7 @@
     <Compile Include="Domain\Estimates.cs" />
     <Compile Include="Domain\EstimationRound.cs" />
     <Compile Include="Domain\ParticipantHasNotYetEstimatedException.cs" />
+    <Compile Include="Domain\RoundCompletedArgs.cs" />
     <Compile Include="Domain\StoryPoints.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

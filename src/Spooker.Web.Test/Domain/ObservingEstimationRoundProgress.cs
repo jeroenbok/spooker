@@ -50,6 +50,20 @@ namespace Spooker.Web.Test.Domain
             Assert.That(round.Status.ParticipantCount, Is.EqualTo(2), "number of participants");
         }
 
+        [Test]
+        public void When_all_participants_have_estimated_then_estimation_round_notifies_all_participants_have_estimated()
+        {
+            var round = new EstimationRound();
+            var estimator = Participant.In(round, "estimator");
+            RoundCompletedArgs completed = null;
+            round.Completed += (sender, args) => completed = args;
+
+            estimator.Estimate(StoryPoints.Coffee);
+
+            Assert.That(completed, Is.Not.Null, "completed event");
+            Assert.That(completed.Status, Is.Not.Null, "completed event status");
+        }
+
         private Estimate NoEstimate(string participantName)
         {
             return new Estimate(participantName, StoryPoints.None);
