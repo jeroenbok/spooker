@@ -44,7 +44,7 @@ Scenarios
 
 	Seeing estimation round progress
 
-		[~] As a [participant who has not estimated yet],
+		[x] As a [participant who has not estimated yet],
 		    when another participant makes an estimation,
 		    I want to see the number of estimates go up,
 			so that I can see whether I should hurry up.
