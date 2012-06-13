@@ -25,6 +25,11 @@ namespace Spooker.Web.Domain
             }
         }
 
+        public int Count
+        {
+            get { return _estimatesByParticipant.Count; }
+        }
+
         public Estimates Register(Estimate estimate)
         {
             var newEstimatesByParticipant = new Dictionary<string, StoryPoints>(_estimatesByParticipant);

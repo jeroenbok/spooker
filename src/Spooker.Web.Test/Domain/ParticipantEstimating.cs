@@ -71,7 +71,11 @@ namespace Spooker.Web.Test.Domain
         [Test]
         public void When_all_participants_have_estimated_then_estimate_cannot_be_changed()
         {
-            Assert.Inconclusive();
+            var round = new EstimationRound();
+            var joe = Participant.In(round, "joe");
+            joe.Estimate(StoryPoints.Zero);
+
+            Assert.Throws<CannotEstimateWhenAllEstimatesAreGivenException>(() => joe.Estimate(StoryPoints.One));
         }
     }
 }

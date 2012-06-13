@@ -36,7 +36,7 @@ Scenarios
 		    I can [estimate] by entering my [estimated story points],
 		    so that my estimate is taken into account in the [estimation round] for a user story.
 
-		[-] As a [participant who has estimated] and [not all participants have yet estimated],
+		[~] As a [participant who has estimated] and [not all participants have yet estimated],
 			when I reconsider on my estimate,
 			then my estimate is taken into account
 				everyone is notified of my new estimate

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Spooker.Web.Infrastructure.Extensions;
 
 namespace Spooker.Web.Domain
@@ -43,7 +44,15 @@ namespace Spooker.Web.Domain
 
         private void RegisterEstimate(object sender, EstimatedArgs args)
         {
+            if (AllParticipantsHaveEstimated)
+                throw new CannotEstimateWhenAllEstimatesAreGivenException();
+
             _estimates = _estimates.Register(args.Estimate);
+        }
+
+        private bool AllParticipantsHaveEstimated
+        {
+            get { return Partipants.Count() == Estimates.Count; }
         }
     }
 }
