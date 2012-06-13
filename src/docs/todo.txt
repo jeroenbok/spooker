@@ -26,21 +26,49 @@ Scenarios
 
 	Joining a estimation round
 
-		As a [participant], I can join an [estimation round] by entering my name,
-		so I can participate in the planning.
+		[x] As a [participant who has not joined an estimation round],
+		    when I join an [estimation round] by entering my name,
+		    then I join the running estimation round.
 	
 	Estimating
 
-		As a [participant], I can [estimate] by entering my [estimated story points],
-		so that my estimate is taken into account in the [estimation round] for a user story.
+		[x] As a [participant],
+		    I can [estimate] by entering my [estimated story points],
+		    so that my estimate is taken into account in the [estimation round] for a user story.
+
+		[ ] As a [participant who has estimated] and [not all participants have yet estimated],
+			when I reconsider on my estimate,
+			then my estimate is taken into account
+				everyone is notified of my new estimate
+			so that I am not burdened to be 'right the first time'
 
 	Seeing estimation round progress
 
-		As a [participant], I can see which of the participants have estimated,
-		and whose estimates are pending -without seeing their actual estimate,
-		so that I can see which participants have decided on their estimate.
+		[~] As a [participant who has not estimated yet],
+		    when another participant makes an estimation,
+		    I want to see the number of estimates go up,
+			so that I can see whether I should hurry up.
+
+		[~] As a [participant who has estimated],
+		    I can see which of the participants have estimated,
+		       and whose estimates are pending -without seeing their actual estimate,
+		    so that I can see which participants have decided on their estimate.
+
+		[ ] As a [participant who has estimated],
+		    when all participants have estimated,
+		    I want to be able to join the next voting round.
 
 	Seeing estimation round outcome
 
-		As a [participant], I can see the estimates of all participants,
-		so that as a group we can get consensus of the size of the user story.
+		[~] As a [participant],
+		    I can see the estimates of all participants,
+			so that as a group we can get consensus of the size of the user story.
+
+-------------------------------------------------------------------------------
+Notes to self
+-------------------------------------------------------------------------------
+[ ] when writing scenarios, scenarios are relevent within a context (e.g. screen)
+[ ] describing scenarios in terms of user interaction with an interface helps to
+    express at the right level of abstraction (acceptance)
+[ ] we wrote some tests which aligned with acceptance tests, but feel that we
+    might need to categorize these a little better and include acceptance tests too
