@@ -56,7 +56,20 @@ namespace Spooker.Web.Test.Domain
         }
 
         [Test]
-        public void When_participant_revotes_then_previous_vote_is_overwritten()
+        public void When_participant_reestimates_then_previous_estimate_is_overwritten()
+        {
+            var round = new EstimationRound();
+            var joe = Participant.In(round, "joe");
+            Participant.In(round, "jane");
+            
+            joe.Estimate(StoryPoints.Zero);
+            joe.Estimate(StoryPoints.One);
+
+            Assert.That(round.Estimates[joe.Name], Is.EqualTo(StoryPoints.One), "estimate of joe");
+        }
+
+        [Test]
+        public void When_all_participants_have_estimated_then_estimate_cannot_be_changed()
         {
             Assert.Inconclusive();
         }
