@@ -7,7 +7,7 @@ namespace Spooker.Web.Test.Domain
     public class ObservingEstimationRoundProgress
     {
         [Test]
-        public void When_no_participants_have_estimated_then_no_estimates_are_reported()
+        public void When_no_participants_have_estimated_then_round_status_has_no_estimates()
         {
             var round = new EstimationRound();
             Participant.In(round, "joe");
