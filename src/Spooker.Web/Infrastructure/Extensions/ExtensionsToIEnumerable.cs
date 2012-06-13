@@ -13,7 +13,7 @@ namespace Spooker.Web.Infrastructure.Extensions
         /// <returns>a string representation of the object</returns>
         /// <remarks>relies on reflection to detect the properties and their values, used in the generate string</remarks>
         /// <exception cref="ArgumentNullException">when the instance is null</exception>
-        public static void Each<T>(this IEnumerable<T> elements, Action<T> action)
+        public static void ForEach<T>(this IEnumerable<T> elements, Action<T> action)
         {
             foreach (var element in elements)
                 action(element);

@@ -121,6 +121,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Domain\EstimatedArgs.cs" />
     <Compile Include="Domain\EstimationStatus.cs" />
     <Compile Include="Domain\NotParticipatingInRoundException.cs" />
     <Compile Include="Domain\Participant.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\ReflectiveToStringBuilder.cs" />
     <Compile Include="Infrastructure\Extensions\ExtensionsToIEnumerable.cs" />
     <Compile Include="Infrastructure\Extensions\ExtensionsToEventHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

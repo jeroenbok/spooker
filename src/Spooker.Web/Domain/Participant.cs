@@ -1,14 +1,15 @@
 using System;
-using Spooker.Web.Infrastructure.Extensions;
+using Spooker.Web.Infrastructure;
 
 namespace Spooker.Web.Domain
 {
     public class Participant
     {
-        public event EventHandler<EstimatedArgs> Estimated;
+        public event EventHandler<EstimatedArgs> Estimated = delegate { };
         
         private readonly string _name;
-        private EstimationRound _round;
+
+        private EstimationRound _participatingRound;
 
         public Participant(string name)
         {
@@ -22,20 +23,21 @@ namespace Spooker.Web.Domain
 
         public void Participate(EstimationRound round)
         {
-            _round = round;
-            _round.Join(this);
+            _participatingRound = round;
+            _participatingRound.Join(this);
         }
 
         public void Estimate(StoryPoints storyPoints)
         {
-            if (_round == null)
+            if (_participatingRound == null)
                 throw new NotParticipatingInRoundException(_name);
-            Estimated.Raise(this, new EstimatedArgs(new Estimate(_name, storyPoints)));
+
+            Estimated(this, new EstimatedArgs(new Estimate(_name, storyPoints)));
         }
 
         public override string ToString()
         {
-            return _name;
+            return new ReflectiveToStringBuilder(this).ToString();
         }
 
         public static Participant In(EstimationRound round, string name = "anonymous")

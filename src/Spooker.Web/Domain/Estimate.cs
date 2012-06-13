@@ -1,3 +1,5 @@
+using Spooker.Web.Infrastructure;
+
 namespace Spooker.Web.Domain
 {
     public class Estimate
@@ -41,7 +43,7 @@ namespace Spooker.Web.Domain
 
         public override string ToString()
         {
-            return string.Format("Estimate[Participant='{0}', StoryPoints='{1}']", _participantName, _storyPoints);
+            return new ReflectiveToStringBuilder(this).ToString();
         }
 
         private bool Equals(Estimate other)

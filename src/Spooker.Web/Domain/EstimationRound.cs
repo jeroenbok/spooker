@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using Spooker.Web.Infrastructure.Extensions;
 
 namespace Spooker.Web.Domain
 {
@@ -23,13 +23,13 @@ namespace Spooker.Web.Domain
             get
             {
                 var estimations = new List<Estimate>();
-                foreach (var participant in _participants)
-                {
-                    var storyPoints = _estimates.HasEstimateFor(participant.Name)
-                                                  ? _estimates[participant.Name]
-                                                  : StoryPoints.None;
-                    estimations.Add(new Estimate(participant.Name, storyPoints));
-                }
+                _participants.ForEach(p =>
+                                          {
+                                              var storyPoints = _estimates.HasEstimateFor(p.Name)
+                                                                            ? _estimates[p.Name]
+                                                                            : StoryPoints.None;
+                                              estimations.Add(new Estimate(p.Name, storyPoints));
+                                          });
                 return new EstimationStatus(estimations);
             }
         }
@@ -44,21 +44,6 @@ namespace Spooker.Web.Domain
         private void RegisterEstimate(object sender, EstimatedArgs args)
         {
             _estimates = _estimates.Register(args.Estimate);
-        }
-    }
-
-    public class EstimatedArgs : EventArgs
-    {
-        private readonly Estimate _estimate;
-
-        public EstimatedArgs(Estimate estimate)
-        {
-            _estimate = estimate;
-        }
-
-        public Estimate Estimate
-        {
-            get { return _estimate; }
         }
     }
 }
