@@ -40,7 +40,8 @@ namespace Spooker.Web.Domain
 
         public void Join(Participant participant)
         {
-            // TODO Handle dupe participant join attempts
+            if (_participants.Any(p => p.Name == participant.Name))
+                throw new AlreadyParticipatesInRoundException(participant.Name);
             _participants.Add(participant);
             participant.Estimated += RegisterEstimate;
         }

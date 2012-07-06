@@ -123,6 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EstimationController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Domain\AlreadyParticipatesInRoundException.cs" />
     <Compile Include="Domain\CannotEstimateWhenAllEstimatesAreGivenException.cs" />
     <Compile Include="Domain\EstimatedArgs.cs" />
     <Compile Include="Domain\EstimationStatus.cs" />

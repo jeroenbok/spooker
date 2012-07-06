@@ -29,11 +29,16 @@ namespace Spooker.Web.Test.Domain
 
             Assert.That(estimationRound.Partipants, Is.EquivalentTo(new[] { joe, jane }), "participants");
         }
-        
+
         [Test]
         public void Cannot_join_estimation_round_when_same_name_is_already_participating()
         {
-            Assert.Inconclusive();
+            var joe = new Participant("joe");
+            var againJoe = new Participant("joe");
+            var estimationRound = new EstimationRound();
+
+            joe.Participate(estimationRound);
+            Assert.Throws<AlreadyParticipatesInRoundException>(() => againJoe.Participate(estimationRound));
         }
 
         [Test]
