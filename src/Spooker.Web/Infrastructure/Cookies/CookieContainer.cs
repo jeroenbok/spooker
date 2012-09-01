@@ -9,6 +9,13 @@ namespace Spooker.Web.Infrastructure.Cookies
         private readonly HttpRequestBase _request;
         private readonly HttpResponseBase _response;
 
+        public CookieContainer()
+        {
+            var httpContext = new HttpContextWrapper(HttpContext.Current);
+            _request = httpContext.Request;
+            _response = httpContext.Response;
+        }
+
         public CookieContainer(HttpRequestBase request, HttpResponseBase response)
         {
             // "Check" is a helper class, I've got from the "Kigg" project
