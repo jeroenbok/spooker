@@ -17,24 +17,17 @@ namespace Spooker.Web.Controllers
 
             ViewBag.TotalParticipants = RoundKeeper.CurrentRound.Partipants.Count();
             ViewBag.UserName = RoundKeeper.CurrentRound.Partipants.Single(p => p.UserId == userId).Name;
-            ViewBag.StoryPointsSelectList = StoryPoints.QuestionMark.ToSelectList();
-            return View();
+            ViewBag.UserId = userId;
+            return View(new EstimationForm(userId));
         }
 
-        public ActionResult Estimates()
+        [HttpPost]
+        public ActionResult Estimate(EstimationForm form)
         {
-            return View(RoundKeeper.CurrentRound.Status);
-        }
-    }
+            var estimate = (StoryPoints) Enum.Parse(typeof (StoryPoints), form.Estimate);
+            RoundKeeper.CurrentRound.RegisterParticipantEstimate(form.UserId, estimate);
 
-    public static class EnumExtensions
-    {
-        public static SelectList ToSelectList<TEnum>(this TEnum enumObj)
-        {
-            var values = from TEnum e in Enum.GetValues(typeof(TEnum))
-                         select new { Id = e, Name = e.ToString() };
-
-            return new SelectList(values, "Id", "Name", enumObj);
+            return View("Estimates", RoundKeeper.CurrentRound.Status);
         }
     }
 }

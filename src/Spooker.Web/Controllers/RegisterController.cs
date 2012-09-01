@@ -49,8 +49,21 @@ namespace Spooker.Web.Controllers
 
     public class EstimationForm
     {
+        public EstimationForm()
+        {
+            // Required by MVC
+        }
+
+        public EstimationForm(Guid userId)
+        {
+            UserId = userId;
+        }
+
         [Required]
         [Display(Name = "Estimate")]
-        public StoryPoints Estimate { get; set; }
+        public string Estimate { get; set; }
+
+        [Required]
+        public Guid UserId { get; set; }
     }
 }

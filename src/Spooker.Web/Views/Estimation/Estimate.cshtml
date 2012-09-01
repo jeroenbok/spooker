@@ -22,12 +22,11 @@
                     @Html.ValidationMessageFor(m => m.Estimate)
                 </div>
                 <div>
-                    @Html.DropDownList(m => m.Estimate, (SelectList)ViewBag.StoryPointsSelectList)
+                    @Html.DropDownListFor(m => m.Estimate, new SelectList(Enum.GetValues(typeof(StoryPoints))))
                 </div>
                 <input type="submit" value="Estimate"/>
             }
-            Enter estimate here: 
-            Todo estimate here
+            
         </div>
     </body>
 </html>

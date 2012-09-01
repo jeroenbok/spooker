@@ -61,5 +61,10 @@ namespace Spooker.Web.Domain
         {
             get { return Partipants.Count() == Estimates.Count; }
         }
+
+        public void RegisterParticipantEstimate(Guid userId, StoryPoints estimate)
+        {
+            Partipants.Single(p => p.UserId == userId).Estimate(estimate);
+        }
     }
 }
