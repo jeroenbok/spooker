@@ -27,7 +27,6 @@ namespace Spooker.Web.Controllers
             RoundKeeper.CurrentRound.RegisterParticipantEstimate(form.UserId, estimate);
 
             return RedirectToAction("Estimates");
-            return View("Estimates", RoundKeeper.CurrentRound.Status);
         }
 
         public ActionResult Estimates()

@@ -38,7 +38,7 @@ namespace Spooker.Web.Test.Domain
             var estimationRound = new EstimationRound();
 
             joe.Participate(estimationRound);
-            Assert.Throws<AlreadyParticipatesInRoundException>(() => againJoe.Participate(estimationRound));
+            Assert.Throws<ParticipantAlreadyParticpatesInRoundException>(() => againJoe.Participate(estimationRound));
         }
 
         [Test]

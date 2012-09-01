@@ -46,9 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\When_participant_without_estimate_is_removed.cs" />
+    <Compile Include="Domain\GivenWhenThenFixture.cs" />
+    <Compile Include="Domain\In_round_with_sole_partipant_which_has_not_estimated.cs" />
+    <Compile Include="Domain\In_round_with_two_participants_of_which_one_has_estimated.cs" />
     <Compile Include="Domain\ObservingEstimationRoundProgress.cs" />
     <Compile Include="Domain\ParticipantEstimating.cs" />
     <Compile Include="Domain\ParticipantJoinsAnEstimationRound.cs" />
+    <Compile Include="Domain\ThenAttribute.cs" />
+    <Compile Include="Domain\When_sole_participant_in_round_is_removed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

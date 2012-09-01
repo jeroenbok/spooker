@@ -7,12 +7,12 @@ namespace Spooker.Web.Domain
     public class EstimationStatus : IEnumerable<Estimate>
     {
         private readonly IList<Estimate> _estimationsOfAllParticipants;
-        private readonly bool _isEstimationRoundCompleted;
+        private readonly bool _isCompleted;
 
-        public EstimationStatus(IList<Estimate> estimationsOfAllParticipants, bool isEstimationRoundCompleted)
+        public EstimationStatus(IList<Estimate> estimationsOfAllParticipants, bool isCompleted)
         {
             _estimationsOfAllParticipants = estimationsOfAllParticipants;
-            _isEstimationRoundCompleted = isEstimationRoundCompleted;
+            _isCompleted = isCompleted;
         }
 
         public IEnumerator<Estimate> GetEnumerator()
@@ -35,9 +35,9 @@ namespace Spooker.Web.Domain
             get { return _estimationsOfAllParticipants.Count; }
         }
 
-        public bool IsEstimationRoundCompleted
+        public bool IsCompleted
         {
-            get { return _isEstimationRoundCompleted; }
+            get { return _isCompleted; }
         }
     }
 }

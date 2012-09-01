@@ -48,7 +48,7 @@ namespace Spooker.Web.Test.Domain
 
             Assert.That(round.Status.EstimateCount, Is.EqualTo(1), "number of estimates");
             Assert.That(round.Status.ParticipantCount, Is.EqualTo(2), "number of participants");
-            Assert.That(round.Status.IsEstimationRoundCompleted, Is.False, "round completed");
+            Assert.That(round.Status.IsCompleted, Is.False, "round completed");
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace Spooker.Web.Test.Domain
 
             Assert.That(completed, Is.Not.Null, "completed event");
             Assert.That(completed.Status, Is.Not.Null, "completed event status");
-            Assert.That(round.Status.IsEstimationRoundCompleted, Is.True, "round completed");
+            Assert.That(round.Status.IsCompleted, Is.True, "round completed");
         }
 
         private Estimate NoEstimate(string participantName)

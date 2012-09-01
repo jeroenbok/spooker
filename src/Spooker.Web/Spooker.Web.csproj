@@ -15,7 +15,7 @@
     <AssemblyName>Spooker.Web</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -127,7 +127,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EstimationController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
-    <Compile Include="Domain\AlreadyParticipatesInRoundException.cs" />
+    <Compile Include="Domain\NoSuchParticipantException.cs" />
+    <Compile Include="Domain\ParticipantAlreadyParticpatesInRoundException.cs" />
     <Compile Include="Domain\CannotEstimateWhenAllEstimatesAreGivenException.cs" />
     <Compile Include="Domain\EstimatedArgs.cs" />
     <Compile Include="Domain\EstimationStatus.cs" />
@@ -239,7 +240,7 @@
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>8081</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/Spooker</IISUrl>
+          <IISUrl>http://localhost:8081/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

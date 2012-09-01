@@ -19,7 +19,7 @@
                     <li>@estimate.ParticipantName - @estimate.StoryPoints</li>
                 }
             </ul>
-            @if (Model.IsEstimationRoundCompleted)
+            @if (Model.IsCompleted)
             {
                 @Html.ActionLink("Start new round", "Estimate", new RouteValueDictionary {{"UserId", ViewBag.UserId}})
             }
