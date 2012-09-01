@@ -30,8 +30,16 @@ namespace Spooker.Web.Controllers
 
             var participant = new Participant(form.Name);
             participant.Participate(RoundKeeper.CurrentRound);
+            StoreUserIdInCookie(participant.UserId);
+            return RedirectToAction("Estimate", "Estimation");
+        }
 
-            return RedirectToAction("Estimate", "Estimation", new RouteValueDictionary(){{"UserId", participant.UserId}});
+        private void StoreUserIdInCookie(Guid userId)
+        {
+            HttpCookie userIdCookie = new HttpCookie("SpookerUserCookie");
+            userIdCookie.Expires = DateTime.Now.AddDays(1);
+            userIdCookie.Values["UserId"] = userId.ToString();
+            this.ControllerContext.HttpContext.Response.Cookies.Add(userIdCookie);
         }
     }
 
@@ -54,16 +62,8 @@ namespace Spooker.Web.Controllers
             // Required by MVC
         }
 
-        public EstimationForm(Guid userId)
-        {
-            UserId = userId;
-        }
-
         [Required]
         [Display(Name = "Estimate")]
         public string Estimate { get; set; }
-
-        [Required]
-        public Guid UserId { get; set; }
     }
 }
