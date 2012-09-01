@@ -1,0 +1,24 @@
+﻿@using Spooker.Web.Domain
+@model EstimationStatus
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Estimates Overview</title>
+    </head>
+    <body>
+        <div>
+            <ul>
+            @foreach(Estimate estimate in Model)
+    {
+         <li>@estimate.ParticipantName - @estimate.StoryPoints</li>         
+    }
+    </ul>
+        </div>
+    </body>
+</html>
