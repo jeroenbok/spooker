@@ -18,7 +18,7 @@ namespace Spooker.Web.Controllers
                 return RedirectToAction("Index", "Register");
             }
 
-            ViewBag.TotalParticipants = _roundKeeper.ActiveRoundStatus.ParticipantCount;
+            ViewBag.TotalParticipants = _roundKeeper.ActiveRound.Status.ParticipantCount;
             ViewBag.UserName = _roundKeeper.ActiveRound.ParticipantById(participantId);
             return View(new EstimationForm());
         }
@@ -45,7 +45,7 @@ namespace Spooker.Web.Controllers
 
         public ActionResult Estimates()
         {
-            return View("Estimates", _roundKeeper.ActiveRoundStatus);
+            return View("Estimates", _roundKeeper.ActiveRound.Status);
         }
     }
 }
