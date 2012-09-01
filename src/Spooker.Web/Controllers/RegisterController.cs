@@ -1,16 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using System.Web.Routing;
 using Spooker.Web.Domain;
+using Spooker.Web.Infrastructure;
+using Spooker.Web.Infrastructure.Cookies;
 
 namespace Spooker.Web.Controllers
 {
     public class RegisterController : Controller
     {
+        private readonly IAppCookies _appCookies;
+
+        public RegisterController(IAppCookies appCookies)
+        {
+            _appCookies = appCookies;
+        }
+
         //
         // GET: /Register/
 
@@ -30,16 +34,8 @@ namespace Spooker.Web.Controllers
 
             var participant = new Participant(form.Name);
             participant.Participate(RoundKeeper.CurrentRound);
-            StoreUserIdInCookie(participant.UserId);
+            _appCookies.UserId = participant.UserId;
             return RedirectToAction("Estimate", "Estimation");
-        }
-
-        private void StoreUserIdInCookie(Guid userId)
-        {
-            HttpCookie userIdCookie = new HttpCookie("SpookerUserCookie");
-            userIdCookie.Expires = DateTime.Now.AddDays(1);
-            userIdCookie.Values["UserId"] = userId.ToString();
-            this.ControllerContext.HttpContext.Response.Cookies.Add(userIdCookie);
         }
     }
 

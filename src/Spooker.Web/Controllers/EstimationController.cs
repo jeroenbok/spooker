@@ -1,16 +1,23 @@
 ﻿using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Spooker.Web.Domain;
+using Spooker.Web.Infrastructure.Cookies;
 
 namespace Spooker.Web.Controllers
 {
     public class EstimationController : Controller
     {
+        private readonly IAppCookies _appCookies;
+
+        public EstimationController(IAppCookies appCookies)
+        {
+            _appCookies = appCookies;
+        }
+
         public ActionResult Estimate()
         {
-            Guid userId = GetUserId();
+            Guid userId = _appCookies.UserId;
             if (userId == Guid.Empty || RoundKeeper.CurrentRound.Partipants.All(p => p.UserId != userId))
             {
                 return RedirectToAction("Index", "Register");
@@ -21,22 +28,11 @@ namespace Spooker.Web.Controllers
             return View(new EstimationForm());
         }
 
-        public Guid GetUserId()
-        {
-            HttpCookie userCookie = ControllerContext.HttpContext.Request.Cookies["SpookerUserCookie"];
-            if (userCookie == null)
-                return Guid.Empty;
-            Guid userId;
-            if (Guid.TryParse(userCookie.Values["UserId"], out userId))
-                return userId;
-            return Guid.Empty;
-        }
-
         [HttpPost]
         public ActionResult Estimate(EstimationForm form)
         {
             var estimate = (StoryPoints) Enum.Parse(typeof (StoryPoints), form.Estimate);
-            RoundKeeper.CurrentRound.RegisterParticipantEstimate(GetUserId(), estimate);
+            RoundKeeper.CurrentRound.RegisterParticipantEstimate(_appCookies.UserId, estimate);
 
             return RedirectToAction("Estimates");
         }

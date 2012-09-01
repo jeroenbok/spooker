@@ -39,6 +39,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,6 +56,7 @@
     <Compile Include="Domain\ParticipantJoinsAnEstimationRound.cs" />
     <Compile Include="Domain\ThenAttribute.cs" />
     <Compile Include="Domain\When_sole_participant_in_round_is_removed.cs" />
+    <Compile Include="Infrastructure\Cookies\CookieContainerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

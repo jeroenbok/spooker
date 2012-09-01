@@ -143,6 +143,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Cookies\AppCookies.cs" />
+    <Compile Include="Infrastructure\Cookies\CookieContainer.cs" />
+    <Compile Include="Infrastructure\Cookies\IAppCookies.cs" />
+    <Compile Include="Infrastructure\Cookies\ICookieContainer.cs" />
     <Compile Include="Infrastructure\ReflectiveToStringBuilder.cs" />
     <Compile Include="Infrastructure\Extensions\ExtensionsToIEnumerable.cs" />
     <Compile Include="Infrastructure\Extensions\ExtensionsToEventHandler.cs" />
