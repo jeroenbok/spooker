@@ -8,17 +8,24 @@ namespace Spooker.Web.Domain
         public event EventHandler<EstimatedArgs> Estimated = delegate { };
         
         private readonly string _name;
+        private readonly Guid _userId;
 
         private EstimationRound _participatingRound;
 
         public Participant(string name)
         {
             _name = name;
+            _userId = Guid.NewGuid();
         }
 
         public string Name
         {
             get { return _name; }
+        }
+
+        public Guid UserId
+        {
+            get { return _userId; }
         }
 
         public void Participate(EstimationRound round)

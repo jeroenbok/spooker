@@ -1,4 +1,6 @@
-﻿@model dynamic
+﻿@using Spooker.Web.Domain
+@using System.Linq
+@model Spooker.Web.Controllers.EstimationForm
 
 @{
     Layout = null;
@@ -12,7 +14,20 @@
     </head>
     <body>
         <div>
-              Todo estimate here
+                Name: @ViewBag.UserName - Participants: @ViewBag.TotalParticipants
+            @using (Html.BeginForm())
+            {
+                <div>
+                    @Html.LabelFor(m => m.Estimate)
+                    @Html.ValidationMessageFor(m => m.Estimate)
+                </div>
+                <div>
+                    @Html.DropDownList(m => m.Estimate, (SelectList)ViewBag.StoryPointsSelectList)
+                </div>
+                <input type="submit" value="Estimate"/>
+            }
+            Enter estimate here: 
+            Todo estimate here
         </div>
     </body>
 </html>
