@@ -19,3 +19,6 @@ _dotCover*
 
 # Dependencies
 packages/*
+
+# No log files
+*/*.log
