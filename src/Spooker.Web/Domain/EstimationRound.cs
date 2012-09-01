@@ -46,11 +46,6 @@ namespace Spooker.Web.Domain
             participant.Estimated += RegisterEstimate;
         }
 
-        public void RegisterParticipantEstimate(Guid userId, StoryPoints estimate)
-        {
-            Partipants.Single(p => p.UserId == userId).Estimate(estimate);
-        }
-
         public void Remove(Participant participant)
         {
             var idOfParticipantToRemove = participant.UserId;
@@ -58,6 +53,16 @@ namespace Spooker.Web.Domain
             if (participantToRemove == null)
                 throw new NoSuchParticipantException(idOfParticipantToRemove);
             _participants.Remove(participant);
+        }
+
+        public bool HasParticipant(Guid participantId)
+        {
+            return Partipants.All(p => p.UserId != participantId);
+        }
+
+        public string NameOfParticipant(Guid participantId)
+        {
+            return Partipants.Single(p => p.UserId == participantId).Name;
         }
 
         private void RegisterEstimate(object sender, EstimatedArgs args)
@@ -74,6 +79,11 @@ namespace Spooker.Web.Domain
         private bool AllParticipantsHaveEstimated
         {
             get { return Partipants.Count() == Estimates.Count; }
+        }
+
+        public Participant ParticipantById(Guid participantId)
+        {
+            return Partipants.Single(p => p.UserId == participantId);
         }
     }
 }

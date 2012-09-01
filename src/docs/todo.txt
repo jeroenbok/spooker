@@ -64,6 +64,10 @@ Scenarios
 		    I can see the estimates of all participants,
 			so that as a group we can get consensus of the size of the user story.
 
+
+[ ] 
+
+
 -------------------------------------------------------------------------------
 Notes to self
 -------------------------------------------------------------------------------
