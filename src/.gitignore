@@ -14,3 +14,5 @@ build_artifacts/
 *.psess
 *.vsp
 _ReSharper*
+_dotCover*
+*.DotSettings
