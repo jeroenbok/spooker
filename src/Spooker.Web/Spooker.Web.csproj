@@ -127,6 +127,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EstimationController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Domain\RoundKeeper.cs" />
     <Compile Include="Domain\NoSuchParticipantException.cs" />
     <Compile Include="Domain\ParticipantAlreadyParticpatesInRoundException.cs" />
     <Compile Include="Domain\CannotEstimateWhenAllEstimatesAreGivenException.cs" />

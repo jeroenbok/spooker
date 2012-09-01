@@ -8,16 +8,18 @@ namespace Spooker.Web.Controllers
 {
     public class EstimationController : Controller
     {
+        private readonly RoundKeeper _roundKeeper = RoundKeeper.Factory.GetInstance();
+
         public ActionResult Estimate()
         {
-            Guid userId = GetUserId();
-            if (userId == Guid.Empty || RoundKeeper.CurrentRound.Partipants.All(p => p.UserId != userId))
+            Guid participantId = GetUserId();
+            if (participantId == Guid.Empty || _roundKeeper.HasParticipant(participantId))
             {
                 return RedirectToAction("Index", "Register");
             }
 
-            ViewBag.TotalParticipants = RoundKeeper.CurrentRound.Partipants.Count();
-            ViewBag.UserName = RoundKeeper.CurrentRound.Partipants.Single(p => p.UserId == userId).Name;
+            ViewBag.TotalParticipants = _roundKeeper.ActiveRoundStatus.ParticipantCount;
+            ViewBag.UserName = _roundKeeper.ActiveRound.ParticipantById(participantId);
             return View(new EstimationForm());
         }
 
@@ -35,15 +37,15 @@ namespace Spooker.Web.Controllers
         [HttpPost]
         public ActionResult Estimate(EstimationForm form)
         {
-            var estimate = (StoryPoints) Enum.Parse(typeof (StoryPoints), form.Estimate);
-            RoundKeeper.CurrentRound.RegisterParticipantEstimate(GetUserId(), estimate);
+            var storyPoints = (StoryPoints) Enum.Parse(typeof (StoryPoints), form.Estimate);
+            _roundKeeper.ActiveRound.ParticipantById(GetUserId()).Estimate(storyPoints);
 
             return RedirectToAction("Estimates");
         }
 
         public ActionResult Estimates()
         {
-            return View("Estimates", RoundKeeper.CurrentRound.Status);
+            return View("Estimates", _roundKeeper.ActiveRoundStatus);
         }
     }
 }

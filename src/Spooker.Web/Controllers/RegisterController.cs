@@ -11,6 +11,8 @@ namespace Spooker.Web.Controllers
 {
     public class RegisterController : Controller
     {
+        private readonly RoundKeeper _roundKeeper = RoundKeeper.Factory.GetInstance();
+
         //
         // GET: /Register/
 
@@ -29,7 +31,7 @@ namespace Spooker.Web.Controllers
             }
 
             var participant = new Participant(form.Name);
-            participant.Participate(RoundKeeper.CurrentRound);
+            participant.Participate(_roundKeeper.ActiveRound);
             StoreUserIdInCookie(participant.UserId);
             return RedirectToAction("Estimate", "Estimation");
         }
@@ -41,11 +43,6 @@ namespace Spooker.Web.Controllers
             userIdCookie.Values["UserId"] = userId.ToString();
             this.ControllerContext.HttpContext.Response.Cookies.Add(userIdCookie);
         }
-    }
-
-    public class RoundKeeper
-    {
-        public static EstimationRound CurrentRound = new EstimationRound();
     }
 
     public class RegisterForm
