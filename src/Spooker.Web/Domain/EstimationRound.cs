@@ -48,8 +48,8 @@ namespace Spooker.Web.Domain
 
         public void Remove(Participant participant)
         {
-            var idOfParticipantToRemove = participant.UserId;
-            var participantToRemove = _participants.SingleOrDefault(p => p.UserId.Equals(idOfParticipantToRemove));
+            var idOfParticipantToRemove = participant.Id;
+            var participantToRemove = _participants.SingleOrDefault(p => p.Id.Equals(idOfParticipantToRemove));
             if (participantToRemove == null)
                 throw new NoSuchParticipantException(idOfParticipantToRemove);
             _participants.Remove(participant);
@@ -57,12 +57,12 @@ namespace Spooker.Web.Domain
 
         public bool HasParticipant(Guid participantId)
         {
-            return Partipants.All(p => p.UserId != participantId);
+            return Partipants.All(p => p.Id != participantId);
         }
 
         public string NameOfParticipant(Guid participantId)
         {
-            return Partipants.Single(p => p.UserId == participantId).Name;
+            return Partipants.Single(p => p.Id == participantId).Name;
         }
 
         private void RegisterEstimate(object sender, EstimatedArgs args)
@@ -83,7 +83,7 @@ namespace Spooker.Web.Domain
 
         public Participant ParticipantById(Guid participantId)
         {
-            return Partipants.Single(p => p.UserId == participantId);
+            return Partipants.Single(p => p.Id == participantId);
         }
     }
 }

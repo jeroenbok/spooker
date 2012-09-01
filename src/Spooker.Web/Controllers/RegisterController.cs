@@ -35,7 +35,7 @@ namespace Spooker.Web.Controllers
 
             var participant = new Participant(form.Name);
             participant.Participate(_roundKeeper.ActiveRound);
-            _appCookies.ParticipantId = participant.UserId;
+            _appCookies.ParticipantId = participant.Id;
             return RedirectToAction("Estimate", "Estimation");
         }
     }

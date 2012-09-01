@@ -126,7 +126,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\EstimationController.cs" />
+    <Compile Include="Controllers\EstimationForm.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\RegisterForm.cs" />
     <Compile Include="Domain\RoundKeeper.cs" />
     <Compile Include="Domain\NoSuchParticipantException.cs" />
     <Compile Include="Domain\ParticipantAlreadyParticpatesInRoundException.cs" />
