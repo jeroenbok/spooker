@@ -18,11 +18,15 @@ namespace Spooker.Web
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            RouteCollection routeCollection = RouteTable.Routes;
+            routeCollection.MapRoute("Index", "", new {controller = "Register", action = "Index"});
+
+            RouteConfig.RegisterRoutes(routeCollection);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+
     }
 
  
