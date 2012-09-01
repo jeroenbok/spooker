@@ -13,7 +13,7 @@ namespace Spooker.Web.Controllers
         public ActionResult Estimate()
         {
             Guid participantId = GetUserId();
-            if (participantId == Guid.Empty || _roundKeeper.HasParticipant(participantId))
+            if (participantId == Guid.Empty || _roundKeeper.ActiveRound.HasParticipant(participantId))
             {
                 return RedirectToAction("Index", "Register");
             }
