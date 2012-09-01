@@ -26,8 +26,12 @@ namespace Spooker.Web.Controllers
             var estimate = (StoryPoints) Enum.Parse(typeof (StoryPoints), form.Estimate);
             RoundKeeper.CurrentRound.RegisterParticipantEstimate(form.UserId, estimate);
 
-            ViewBag.Userid = form.UserId;
+            return RedirectToAction("Estimates");
+            return View("Estimates", RoundKeeper.CurrentRound.Status);
+        }
 
+        public ActionResult Estimates()
+        {
             return View("Estimates", RoundKeeper.CurrentRound.Status);
         }
     }
