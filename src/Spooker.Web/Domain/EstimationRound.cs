@@ -29,9 +29,7 @@ namespace Spooker.Web.Domain
                 var estimations = new List<Estimate>();
                 _participants.ForEach(p =>
                                           {
-                                              var storyPoints = _estimates.HasEstimateFor(p.Name)
-                                                                            ? _estimates[p.Name]
-                                                                            : StoryPoints.None;
+                                              var storyPoints = _estimates.HasEstimateFor(p.Name) ? _estimates[p.Name] : StoryPoints.None;
                                               estimations.Add(new Estimate(p.Name, storyPoints));
                                           });
                 return new EstimationStatus(estimations, AllParticipantsHaveEstimated);
@@ -40,8 +38,9 @@ namespace Spooker.Web.Domain
 
         public void Join(Participant participant)
         {
-            if (_participants.Any(p => p.Name == participant.Name))
-                throw new ParticipantAlreadyParticpatesInRoundException(participant.Name);
+            if (_participants.Any(p => p.Id.Equals(participant.Id)))
+                throw new ParticipantAlreadyParticpatesInRoundException(participant.Id, participant.Name);
+
             _participants.Add(participant);
             participant.Estimated += RegisterEstimate;
         }
@@ -52,17 +51,14 @@ namespace Spooker.Web.Domain
             var participantToRemove = _participants.SingleOrDefault(p => p.Id.Equals(idOfParticipantToRemove));
             if (participantToRemove == null)
                 throw new NoSuchParticipantException(idOfParticipantToRemove);
+
+            participant.Estimated -= RegisterEstimate;
             _participants.Remove(participant);
         }
 
         public bool HasParticipant(Guid participantId)
         {
-            return Partipants.All(p => p.Id != participantId);
-        }
-
-        public string NameOfParticipant(Guid participantId)
-        {
-            return Partipants.Single(p => p.Id == participantId).Name;
+            return Partipants.Any(p => p.Id.Equals(participantId));
         }
 
         private void RegisterEstimate(object sender, EstimatedArgs args)

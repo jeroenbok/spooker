@@ -39,6 +39,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.2.6.3.862\lib\NET40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration">
+      <HintPath>..\packages\Autofac.2.6.3.862\lib\NET40\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\packages\Autofac.Mvc4.2.6.2.859\lib\NET40\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -129,6 +141,7 @@
     <Compile Include="Controllers\EstimationForm.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\RegisterForm.cs" />
+    <Compile Include="Domain\ActiveRoundNotCompletedException.cs" />
     <Compile Include="Domain\RoundKeeper.cs" />
     <Compile Include="Domain\NoSuchParticipantException.cs" />
     <Compile Include="Domain\ParticipantAlreadyParticpatesInRoundException.cs" />
@@ -146,6 +159,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Ensure.cs" />
     <Compile Include="Infrastructure\Cookies\AppCookies.cs" />
     <Compile Include="Infrastructure\Cookies\CookieContainer.cs" />
     <Compile Include="Infrastructure\Cookies\IAppCookies.cs" />
@@ -154,6 +168,7 @@
     <Compile Include="Infrastructure\Extensions\ExtensionsToIEnumerable.cs" />
     <Compile Include="Infrastructure\Extensions\ExtensionsToEventHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wiring\SpookerWiring.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -228,6 +243,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Estimation\Estimates.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

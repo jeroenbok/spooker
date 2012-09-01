@@ -8,7 +8,7 @@ namespace Spooker.Web.Infrastructure.Cookies
 
         public AppCookies(ICookieContainer cookieContainer)
         {
-            _cookieContainer = cookieContainer;
+            _cookieContainer = Ensure.NotNull(cookieContainer, "cookieContainer");
         }
 
         public Guid ParticipantId

@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\RoundKeeperTest.cs" />
+    <Compile Include="Domain\When_participant_estimates_in_a_newly_joined_round.cs" />
     <Compile Include="Domain\When_participant_without_estimate_is_removed.cs" />
     <Compile Include="Domain\GivenWhenThenFixture.cs" />
     <Compile Include="Domain\In_round_with_sole_partipant_which_has_not_estimated.cs" />

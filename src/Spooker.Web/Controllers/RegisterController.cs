@@ -13,7 +13,7 @@ namespace Spooker.Web.Controllers
 
         public RegisterController(IAppCookies appCookies)
         {
-            _appCookies = appCookies;
+            _appCookies = Ensure.NotNull(appCookies, "appCookies");
         }
 
         //
@@ -34,8 +34,10 @@ namespace Spooker.Web.Controllers
             }
 
             var participant = new Participant(form.Name);
-            participant.Participate(_roundKeeper.ActiveRound);
+
+            _roundKeeper.Enroll(participant);
             _appCookies.ParticipantId = participant.Id;
+
             return RedirectToAction("Estimate", "Estimation");
         }
     }

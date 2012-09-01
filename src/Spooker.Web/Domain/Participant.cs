@@ -30,6 +30,9 @@ namespace Spooker.Web.Domain
 
         public void Participate(EstimationRound round)
         {
+            if (_participatingRound != null)
+                _participatingRound.Remove(this);
+
             _participatingRound = round;
             _participatingRound.Join(this);
         }

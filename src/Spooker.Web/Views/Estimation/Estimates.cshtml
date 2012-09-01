@@ -21,7 +21,7 @@
             </ul>
             @if (Model.IsCompleted)
             {
-                @Html.ActionLink("Start new round", "Estimate", new RouteValueDictionary {{"ParticipantId", ViewBag.UserId}})
+                @Html.ActionLink("Start new round", "StartNewRound")
             }
         </div>
     </body>

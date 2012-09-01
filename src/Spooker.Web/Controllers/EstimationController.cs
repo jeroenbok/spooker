@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using Spooker.Web.Domain;
+using Spooker.Web.Infrastructure;
 using Spooker.Web.Infrastructure.Cookies;
 
 namespace Spooker.Web.Controllers
@@ -11,15 +12,14 @@ namespace Spooker.Web.Controllers
         private readonly RoundKeeper _roundKeeper = RoundKeeper.Factory.GetInstance();
         private readonly IAppCookies _appCookies;
 
-
         public EstimationController(IAppCookies appCookies)
         {
-            _appCookies = appCookies;
+            _appCookies = Ensure.NotNull(appCookies, "appCookies");
         }
 
         public ActionResult Estimate()
         {
-            Guid participantId = _appCookies.ParticipantId;
+            var participantId = _appCookies.ParticipantId;
             if (participantId == Guid.Empty || !_roundKeeper.ActiveRound.HasParticipant(participantId))
             {
                 return RedirectToAction("Index", "Register");
@@ -42,6 +42,12 @@ namespace Spooker.Web.Controllers
         public ActionResult Estimates()
         {
             return View("Estimates", _roundKeeper.ActiveRound.Status);
+        }
+
+        public ActionResult StartNewRound()
+        {
+            _roundKeeper.StartNewRound();
+            return RedirectToAction("Estimate");
         }
     }
 }
