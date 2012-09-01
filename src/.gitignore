@@ -16,3 +16,6 @@ build_artifacts/
 _ReSharper*
 _dotCover*
 *.DotSettings
+
+# Dependencies
+packages/*
