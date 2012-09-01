@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Spooker.Web.Domain;
 using Spooker.Web.Infrastructure;
 using Spooker.Web.Infrastructure.Cookies;
@@ -36,27 +35,8 @@ namespace Spooker.Web.Controllers
 
             var participant = new Participant(form.Name);
             participant.Participate(_roundKeeper.ActiveRound);
-            _appCookies.UserId = participant.UserId;
+            _appCookies.ParticipantId = participant.UserId;
             return RedirectToAction("Estimate", "Estimation");
         }
-    }
-
-    public class RegisterForm
-    {
-        [Required]
-        [Display(Name = "Name")]
-        public string Name { get; set; }
-    }
-
-    public class EstimationForm
-    {
-        public EstimationForm()
-        {
-            // Required by MVC
-        }
-
-        [Required]
-        [Display(Name = "Estimate")]
-        public string Estimate { get; set; }
     }
 }
