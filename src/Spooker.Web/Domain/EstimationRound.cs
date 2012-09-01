@@ -34,7 +34,7 @@ namespace Spooker.Web.Domain
                                                                             : StoryPoints.None;
                                               estimations.Add(new Estimate(p.Name, storyPoints));
                                           });
-                return new EstimationStatus(estimations);
+                return new EstimationStatus(estimations, AllParticipantsHaveEstimated);
             }
         }
 

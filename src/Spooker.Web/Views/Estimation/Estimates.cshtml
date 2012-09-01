@@ -14,11 +14,15 @@
     <body>
         <div>
             <ul>
-            @foreach(Estimate estimate in Model)
-    {
-         <li>@estimate.ParticipantName - @estimate.StoryPoints</li>         
-    }
-    </ul>
+                @foreach(Estimate estimate in Model)
+                {
+                    <li>@estimate.ParticipantName - @estimate.StoryPoints</li>
+                }
+            </ul>
+            @if (Model.IsEstimationRoundCompleted)
+            {
+                @Html.ActionLink("Start new round", "Estimate", new RouteValueDictionary {{"UserId", ViewBag.UserId}})
+            }
         </div>
     </body>
 </html>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Spooker.Web.Domain;
@@ -26,6 +25,8 @@ namespace Spooker.Web.Controllers
         {
             var estimate = (StoryPoints) Enum.Parse(typeof (StoryPoints), form.Estimate);
             RoundKeeper.CurrentRound.RegisterParticipantEstimate(form.UserId, estimate);
+
+            ViewBag.Userid = form.UserId;
 
             return View("Estimates", RoundKeeper.CurrentRound.Status);
         }
