@@ -19,8 +19,8 @@ namespace Spooker.Web.Controllers
 
         public ActionResult Estimate()
         {
-            Guid userId = _appCookies.UserId;
-            if (participantId == Guid.Empty || _roundKeeper.ActiveRound.HasParticipant(participantId))
+            Guid participantId = _appCookies.ParticipantId;
+            if (participantId == Guid.Empty || !_roundKeeper.ActiveRound.HasParticipant(participantId))
             {
                 return RedirectToAction("Index", "Register");
             }
@@ -34,7 +34,7 @@ namespace Spooker.Web.Controllers
         public ActionResult Estimate(EstimationForm form)
         {
             var storyPoints = (StoryPoints) Enum.Parse(typeof (StoryPoints), form.Estimate);
-            _roundKeeper.ActiveRound.ParticipantById(_appCookies.UserId).Estimate(storyPoints);
+            _roundKeeper.ActiveRound.ParticipantById(_appCookies.ParticipantId).Estimate(storyPoints);
 
             return RedirectToAction("Estimates");
         }
